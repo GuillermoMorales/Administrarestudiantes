@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -19,9 +20,10 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator="user_id_user_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "user_id_user_seq", sequenceName = "public.user_id_user_seq", allocationSize = 1)
 	@Column(name="id_user")
-	private Long id_user;
+	private Integer id_user;
 
 	@Column(name="username")
 	private String username;
@@ -39,11 +41,11 @@ public class User {
 //Getters y Setters
 	
 
-	public Long getId_user() {
+	public Integer getId_user() {
 		return id_user;
 	}
 
-	public void setId_user(Long id_user) {
+	public void setId_user(Integer id_user) {
 		this.id_user = id_user;
 	}
 

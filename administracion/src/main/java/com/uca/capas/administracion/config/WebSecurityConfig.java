@@ -1,4 +1,4 @@
-package com.uca.capas.administracion.config;
+/*package com.uca.capas.administracion.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +20,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     String[] resources = new String[]{
             "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**"
     };
+    
+    @Autowired
+	private BCryptPasswordEncoder bcrypt;
+    
+    @Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,28 +54,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     BCryptPasswordEncoder bCryptPasswordEncoder;
     
-  //Crea el encriptador de contraseñas	
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-		bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
-//El numero 4 representa que tan fuerte quieres la encriptacion.
-//Se puede en un rango entre 4 y 31. 
-//Si no pones un numero el programa utilizara uno aleatoriamente cada vez
-//que inicies la aplicacion, por lo cual tus contrasenas encriptadas no funcionaran bien
-        return bCryptPasswordEncoder;
-    }
+ 
     
     
-    @Autowired
-    UserServiceImpl userDetailsService;
+  
     
   //Registra el service para usuarios y el encriptador de contrasena
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { 
- 
-        // Setting Service to find User in the database.
-        // And Setting PassswordEncoder
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());     
-    }
-
+    
 }
+*/
