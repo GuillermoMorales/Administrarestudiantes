@@ -27,8 +27,14 @@ public class UserServiceImpl implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User us = repo.findByUsername(username);
-		//Mapear nuestra lista de Authority con la de spring security 
-	    List grantList = new ArrayList();
+		
+		if (us == null) {
+            throw new UsernameNotFoundException("No existe el usuario");
+        }
+		
+	    List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+	    
+	    
 	    
 	    for (Authority authority: us.getAuthority()) {
 	        // ROLE_USER, ROLE_ADMIN,..

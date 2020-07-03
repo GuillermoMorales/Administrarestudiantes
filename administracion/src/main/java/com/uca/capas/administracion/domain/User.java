@@ -82,5 +82,22 @@ public class User {
 		this.authority = authority;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id_user == null) {
+			if (other.id_user != null)
+				return false;
+		} else if (!id_user.equals(other.id_user))
+			return false;
+		return true;
+	}
+
 	
 }

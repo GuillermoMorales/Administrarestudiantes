@@ -29,17 +29,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return bCryptPasswordEncoder;
 	}
 	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception
+	@Autowired
+	protected void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception
 	{
-		auth.userDetailsService(userService).passwordEncoder(bcrypt);
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 	}
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
         .authorizeRequests()
-        .antMatchers(resources).permitAll()  
+        .antMatchers("/resources").permitAll()  
         .antMatchers("/","/index").permitAll()
         .antMatchers("/admin*").access("hasRole('ADMIN')")
         .antMatchers("/user*").access("hasRole('USER')")
