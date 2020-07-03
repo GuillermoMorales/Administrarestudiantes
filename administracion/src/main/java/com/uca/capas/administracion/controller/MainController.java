@@ -19,7 +19,22 @@ public class MainController {
 	@RequestMapping("/menu")
     public ModelAndView menu () {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("greeting");
+        mav.setViewName("menu");
         return mav;
     }
+	
+	@RequestMapping("/admin")
+    public ModelAndView admin() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("admin");
+        return mav;
+    }
+	
+	@RequestMapping("/user")
+	public ModelAndView us()
+	{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("user");
+		return mav;
+	}
 }
