@@ -67,7 +67,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background-color: #f6f8fa;
 }
 
 [tabindex="-1"]:focus {
@@ -5213,7 +5213,7 @@ input[type="button"].btn-block {
 
 .back
 {
-	background-color:#A3CB38;
+	background-color:#f6f8fa;
 }
 
 .page-link {
