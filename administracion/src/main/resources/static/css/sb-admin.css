@@ -590,8 +590,14 @@ pre code {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+ vertical-align: middle;
+ margin:0;
+}
+
+.mm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .row {
@@ -2183,6 +2189,11 @@ textarea.form-control {
   position: relative;
   display: block;
   padding-left: 1.25rem;
+}
+
+.centro2
+{
+	margin-left:75px;
 }
 
 .form-check-input {
@@ -4867,11 +4878,14 @@ input[type="button"].btn-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: max-content;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  min-width: 0;
+  margin: 0 auto;
+  vertical-align: middle;
+  margin-top:5%;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
@@ -4879,9 +4893,27 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
+}
+
+.titulo
+{
+	padding-top: 50px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.centro
+{
+	margin-right: auto;
+    margin-left: auto;
+}
+.centro2
+{
+	margin-right:200px;
 }
 
 .card > .list-group:first-child .list-group-item:first-child {
@@ -4898,7 +4930,10 @@ input[type="button"].btn-block {
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
+  margin-left:auto;
+  margin-right:auto;
   padding: 1.25rem;
+  
 }
 
 .card-title {
@@ -5174,6 +5209,11 @@ input[type="button"].btn-block {
   padding-left: 0;
   list-style: none;
   border-radius: 0.25rem;
+}
+
+.back
+{
+	background-color:#A3CB38;
 }
 
 .page-link {
