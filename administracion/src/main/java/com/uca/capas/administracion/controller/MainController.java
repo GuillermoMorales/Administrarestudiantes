@@ -37,4 +37,12 @@ public class MainController {
 		mav.setViewName("user");
 		return mav;
 	}
+	
+	@RequestMapping("/registro")
+	public ModelAndView registro()
+	{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("registro");
+		return mav;
+	}
 }
