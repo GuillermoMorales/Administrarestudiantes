@@ -14,6 +14,7 @@
 <body id="page-top" class="back">
 
 	<div class="container-fluid">
+	
 
 		<div class="card mb-4">
 			<div class="card-body">
@@ -46,7 +47,10 @@
 					Credenciales Inválidas o Usuario Desactivado.</div>
 				<div th:if="${param.logout}" class="alert alert-success"
 					role="alert">Has cerrado sesión.</div>
+				<div th:if="${resultado==1}" class="alert alert-success"
+					role="alert">Usuario registrado en espera de validación.</div>
 			</div>
+			
 		</div>
 	</div>
 </body>

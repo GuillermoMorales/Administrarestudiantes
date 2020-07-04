@@ -2,12 +2,50 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<!-- Los iconos tipo Solid de Fontawesome-->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
 <link href="css/sb-admin.css" rel="stylesheet">
 <link href="css/sb-admin.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+<title>Registro</title>
 </head>
-<body>
-registro
+<body id="page-top" class="back">
+
+	<div class="container-fluid">
+
+
+		 <div class="card mb-4">
+			<div class="card-body">
+				<div class="col-12 user-img text-center form-group">
+					<img src="img/user2.png" />
+					<h3>Registrarme</h3>
+				</div>
+
+				
+			<form method="post" th:action="@{/registrarusuario}" th:object="${user}">
+          		<table cellpadding="10">          	          			
+          			<tr>
+          				<td><label>Nombre: </label></td>
+          				<td><input type="text" id="username" class="form-control" onfocus="this.value=''" th:field="*{username}" >
+          				<span th:errors="*{username}" style="color:#DE0000" ></span></td>          			
+          			</tr>
+          			<tr>
+          			<td><label>Contraseña:</label></td>
+          			<td><input type="password" id="pass" class="form-control" th:field="*{pass}" >
+          			<span th:errors="*{pass}" style="color:#DE0000" ></span></td>          			
+          		</tr>           		          		          		
+          		<tr>
+          			<td><input type="submit"  class="btn btn-primary btn-block" value="Guardar" /></td>          			
+          		</td>
+          		</tr>          		
+          	</table>       
+          	</form>	
+          	<a href="/login">Regresar</a>			
+			</div>
+		</div>
+	</div>
 </body>
 </html>

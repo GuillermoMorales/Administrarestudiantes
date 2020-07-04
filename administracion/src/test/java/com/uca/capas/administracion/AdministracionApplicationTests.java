@@ -30,14 +30,13 @@ class AdministracionApplicationTests {
 	@Test
 	public void crearUsuarioTest() {
 		/*User us = new User();
-		us.setUsername("admin2");
+		us.setUsername("admin");
 		us.setPass(encoder.encode("123"));	
-		us.setEnabled(false);
+		us.setEnabled(true);
 		User retorno = repo.save(us);*/
 		
 		AuthoritiesUsers id = new AuthoritiesUsers();
-		id.setId_user(4);
-		
+		id.setId_user(1);		
 		id.setId_authority(1);
 		AuthoritiesUsers retorno2 = repo2.save(id);
 		

@@ -12,6 +12,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 
@@ -25,14 +28,24 @@ public class User {
 	@Column(name="id_user")
 	private Integer id_user;
 
+	@Size(message="El campo no debe de tener más de 15 caracteres", max=15)
+	@Size(message="El campo no debe de tener menos de 5 caracteres", min=5)
+	@Pattern(regexp="^\\S.*$",message="Usuario no puede estar vacío")
+	@NotEmpty(message="El campo no debe estar vacío")
 	@Column(name="username")
 	private String username;
 
+	@Pattern(regexp="^\\S.*$",message="Contraseña no tener solo espacio")
+	@Size(message="El campo no debe de tener menos de 8 caracteres", min=8)
+	@NotEmpty(message="El Contraseña no debe estar vacío")
 	@Column(name="pass")
 	private String pass;
 
 	@Column(name="enabled")
 	private boolean enabled;
+	
+	@Column(name="inserted")
+	private boolean inserted;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_authority"))
@@ -40,6 +53,14 @@ public class User {
 
 //Getters y Setters
 	
+
+	public boolean isInserted() {
+		return inserted;
+	}
+
+	public void setInserted(boolean inserted) {
+		this.inserted = inserted;
+	}
 
 	public Integer getId_user() {
 		return id_user;
@@ -82,22 +103,6 @@ public class User {
 		this.authority = authority;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (id_user == null) {
-			if (other.id_user != null)
-				return false;
-		} else if (!id_user.equals(other.id_user))
-			return false;
-		return true;
-	}
-
+	
 	
 }

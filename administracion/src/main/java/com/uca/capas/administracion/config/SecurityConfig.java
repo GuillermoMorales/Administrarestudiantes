@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.uca.capas.administracion.service.UserServiceImpl;
+import com.uca.capas.administracion.service.UserDetailServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private BCryptPasswordEncoder bcrypt;
 	
 	@Autowired
-	private UserServiceImpl userService;
+	private UserDetailServiceImpl userService;
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .authorizeRequests()
         .antMatchers(resources).permitAll()  
-        .antMatchers("/","/index","/registro").permitAll()
+        .antMatchers("/","/index","/registro","/registrarusuario").permitAll()
         .antMatchers("/admin*").access("hasRole('ADMIN')")
         .antMatchers("/user*").access("hasRole('USER')")
             .anyRequest().authenticated()
