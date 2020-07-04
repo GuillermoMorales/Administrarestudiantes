@@ -28,9 +28,12 @@ public class UserServiceImpl implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User us = repo.findByUsername(username);
 		
-		if (us == null) {
-            throw new UsernameNotFoundException("No existe el usuario");
-        }
+		if(us.isEnabled() == false || us == null)
+		{
+			throw new UsernameNotFoundException("Inhabilitado");
+		}
+		
+	
 		
 	    List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 	    

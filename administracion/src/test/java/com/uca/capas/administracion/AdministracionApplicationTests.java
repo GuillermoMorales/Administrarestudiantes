@@ -26,9 +26,9 @@ class AdministracionApplicationTests {
 	@Test
 	public void crearUsuarioTest() {
 		User us = new User();
-		us.setUsername("admin");
+		us.setUsername("inmovil");
 		us.setPass(encoder.encode("123"));	
-		us.setEnabled(true);
+		us.setEnabled(false);
 		User retorno = repo.save(us);
 		
 		assertTrue(retorno.getPass().equalsIgnoreCase(us.getPass()));
