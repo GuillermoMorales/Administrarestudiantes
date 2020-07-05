@@ -48,7 +48,21 @@ public class MainController {
 	@RequestMapping("/admin")
     public ModelAndView admin() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("admin");
+        mav.setViewName("admin/admin");
+        return mav;
+    }
+	
+	@RequestMapping("/prueba")
+    public ModelAndView prueba() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("admin/prueba");
+        return mav;
+    }
+	
+	@RequestMapping("/pruebau")
+    public ModelAndView pruebau() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("user/pruebau");
         return mav;
     }
 	
@@ -56,7 +70,7 @@ public class MainController {
 	public ModelAndView us()
 	{
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user");
+		mav.setViewName("user/user");
 		return mav;
 	}
 	
