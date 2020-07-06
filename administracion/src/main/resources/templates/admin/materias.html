@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+ <!-- Los iconos tipo Solid de Fontawesome-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+<link href="css/sb-admin.css" rel="stylesheet">
+<link href="css/sb-admin.min.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+<title>Insert title here</title>
+</head>
+<body id="page-top" class="back">
+
+	<div class="container-fluid">
+	
+
+		<div class="card mb-4">
+			<div class="card-body">
+			 <div class="col-12 user-img text-center form-group" >
+                    <img src="img/user.png" />
+                    <h3>Login</h3>
+                </div>
+
+				<form class="col-12" th:action="@{/login}" method="post">
+				
+					<div class="form-group" id="user-group">
+						<input
+							class="form-control py-4" id="texto" style="width: 400px"
+							placeholder="Nombre de usuario" name="username" />
+					</div>
+
+
+					<div class="form-group" id="contrasena-group">
+						 <input
+							type="password" id="texto"class="form-control" placeholder="Contrasena"
+							name="pass" />
+					</div>
+
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary" value="Ingresar">
+					</div>
+				</form>
+				<a href="/registro">Registrarme</a>
+				<div th:if="${param.error}" class="alert alert-danger" role="alert">
+					Credenciales Inválidas o Usuario Desactivado.</div>
+				<div th:if="${param.logout}" class="alert alert-success"
+					role="alert">Has cerrado sesión.</div>
+				<div th:if="${resultado==1}" class="alert alert-success"
+					role="alert">Usuario registrado en espera de validación.</div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>

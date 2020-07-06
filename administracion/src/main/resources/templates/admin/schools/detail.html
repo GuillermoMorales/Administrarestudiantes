@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <link href="/css/sb-admin.css" rel="stylesheet">
+    <link href="/css/sb-admin.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <title>Escuelas</title>
+</head>
+<body id="page-top" class="back">
+    <!--/*@thymesVar id="school" type="com.uca.capas.administracion.domain.School"*/-->
+    <!--/*@thymesVar id="municipalities" type="com.uca.capas.administracion.domain.Municipality"*/-->
+    <div class="container">
+        <form
+            th:action="@{/escuelas/update}"
+            method="post"
+            th:object="${school}"
+        >
+            <h1>
+                Editar Escuela
+            </h1>
+
+            <div
+                th:if="${success}"
+                class="alert alert-success"
+                role="alert"
+            >
+                Actualizado correctamente.
+            </div>
+            <div
+                th:if="${error}"
+                th:text="${error}"
+                class="alert alert-danger"
+                role="alert"
+            >
+
+            </div>
+
+            <label>
+                Nombre
+                <input
+                    class="form-control"
+                    th:value="${school.get().getName()}"
+                    th:field="*{name}"
+                />
+            </label>
+            <br>
+            <label>
+                Municipio
+                <select
+                    name="municipality"
+                    id="municipality"
+                    class="form-control"
+                    th:value="${school.get().getMunicipality().getMunicipality_id()}"
+                    th:field="*{municipality_fk}"
+                >
+                    <option
+                        th:each="municipality : ${municipalities}"
+                        th:value="${municipality.getMunicipality_id()}"
+                        th:text="${municipality.getName()}"
+                        th:selected="${school.get().getMunicipality().getMunicipality_id() == municipality.getMunicipality_id()}"
+                    >
+                    </option>
+                </select>
+            </label>
+            <br>
+            <hr>
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="goBack()"
+            >
+                Regresar
+            </button>
+            <button
+                name="id"
+                th:value="*{get().getId()}"
+                class="btn btn-primary"
+            >
+                Actualizar
+            </button>
+        </form>
+    </div>
+
+    <script lang="js" defer th:inline="javascript">
+        function goBack() {
+            console.log('test');
+            window.location = '/escuelas';
+        }
+    </script>
+
+</body>
+</html>
