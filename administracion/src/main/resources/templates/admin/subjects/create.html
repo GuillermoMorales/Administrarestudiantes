@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <link href="/css/sb-admin.css" rel="stylesheet">
+    <link href="/css/sb-admin.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <title>Agregar Materias</title>
+</head>
+<body id="page-top" class="back">
+    <!--/*@thymesVar id="subject" type="com.uca.capas.administracion.domain.Subject"*/-->
+    <div class="container">
+        <form
+            th:action="@{/materias/add}"
+            method="post"
+            th:object="${subject}"
+        >
+            <h1>
+                Agregar materia
+            </h1>
+
+            <label>
+                Código
+                <input
+                    class="form-control"
+                    th:value="${subject.getCode()}"
+                    th:field="*{code}"
+                />
+                <span th:errors="*{code}" style="color:#DE0000" ></span>
+            </label>
+            <br>
+            <label>
+                Decripcion
+                <input
+                    class="form-control"
+                    th:value="${subject.getDescription()}"
+                    th:field="*{description}"
+                />
+                <span th:errors="*{description}" style="color:#DE0000" ></span>
+            </label>
+            <br>
+            <label>
+                Estado
+                <input
+                    class="form-control"
+                    th:value="${subject.getStatus()}"
+                    th:field="*{status}"
+                />
+                <span th:errors="*{status}" style="color:#DE0000" ></span>
+            </label>
+            <br>
+            <hr>
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="goBack()"
+            >
+                Regresar
+            </button>
+            <button
+                name="id"
+                th:value="*{getId()}"
+                class="btn btn-primary"
+            >
+                Agregar
+            </button>
+        </form>
+    </div>
+
+    <script lang="js" defer th:inline="javascript">
+        function goBack() {
+            window.location = '/materias';
+        }
+    </script>
+
+</body>
+</html>

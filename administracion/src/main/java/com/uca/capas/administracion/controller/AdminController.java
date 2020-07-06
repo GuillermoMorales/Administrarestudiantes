@@ -1,16 +1,20 @@
 package com.uca.capas.administracion.controller;
 
 import com.uca.capas.administracion.domain.School;
+import com.uca.capas.administracion.domain.Subject;
 import com.uca.capas.administracion.service.MunicipalityService;
 import com.uca.capas.administracion.service.SchoolService;
+import com.uca.capas.administracion.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 
@@ -22,6 +26,9 @@ public class AdminController {
 
     @Autowired
     MunicipalityService municipalityService;
+
+    @Autowired
+    SubjectService subjectService;
 
     @GetMapping("escuelas")
     public String showSchools(Model model) {
@@ -52,5 +59,62 @@ public class AdminController {
             model.addAttribute("error", e);
         }
         return "admin/schools/detail";
+    }
+
+    @GetMapping("materias")
+    public String showSubjects(Model model) {
+        model.addAttribute("subjectsList", subjectService.showAll());
+        return "admin/subjects/list";
+    }
+
+    @GetMapping("materias/{id}")
+    public String showSubject(Model model, @PathVariable("id") Integer id) {
+        Optional<Subject> subject = subjectService.findById(id);
+        if (subject.isPresent()) {
+            model.addAttribute("subject", subject.get());
+        } else {
+            return "admin/subjects/list";
+        }
+        return "admin/subjects/detail";
+    }
+
+    @GetMapping("materias/add")
+    public String addSubject(Model model) {
+        model.addAttribute("subject", new Subject());
+        return "admin/subjects/create";
+    }
+
+    @PostMapping("materias/add")
+    public String addSubject(Model model, @Valid @ModelAttribute Subject subject, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/subjects/create";
+        }
+
+        subjectService.save(subject);
+        
+        model.addAttribute("subjectsList", subjectService.showAll());
+        return "redirect:/materias";
+    }
+
+    @PostMapping("materias/update")
+    public String updateSubject(Model model, @Valid @ModelAttribute Subject subject, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/subjects/detail";
+        }
+
+        try {
+            Optional<Subject> subj = subjectService.findById(subject.getId());
+            if (subj.isPresent()) {
+                subj.get().setCode(subject.getCode());
+                subj.get().setDescription(subject.getDescription());
+                subj.get().setStatus(subject.getStatus());
+                subjectService.save(subj.get());
+                model.addAttribute("subject", subj.get());
+            }
+            model.addAttribute("success", true);
+        } catch (Exception e) {
+            model.addAttribute("error", e);
+        }
+        return "admin/subjects/detail";
     }
 }
