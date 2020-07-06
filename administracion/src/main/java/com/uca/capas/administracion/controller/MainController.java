@@ -59,10 +59,10 @@ public class MainController {
         return mav;
     }
 	
-	@RequestMapping("/pruebau")
+	@RequestMapping("/procesos")
     public ModelAndView pruebau() {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("user/pruebau");
+        mav.setViewName("user/procesos");
         return mav;
     }
 	
