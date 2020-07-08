@@ -12,4 +12,6 @@ public interface SchoolService {
     public Optional<School> findById(Integer id) throws DataAccessException;
 
     public void save(School school) throws DataAccessException;
+    
+    public List<School> findSchoolByMunicipality_fk(Integer id) throws DataAccessException;
 }

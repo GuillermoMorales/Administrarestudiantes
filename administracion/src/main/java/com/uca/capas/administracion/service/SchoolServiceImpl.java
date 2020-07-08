@@ -31,4 +31,10 @@ public class SchoolServiceImpl implements SchoolService {
     public void save(School school) throws DataAccessException {
         repo.save(school);
     }
+
+	@Override
+	public List<School> findSchoolByMunicipality_fk(Integer id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return repo.findSchoolByMunicipality_fk(id);
+	}
 }

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
 
 
@@ -26,11 +29,22 @@ public class School {
     private Integer municipality_fk;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId
-    @JoinColumn(name = "id")
+    @MapsId("id")
+    @JoinColumn(name = "municipality_fk")
     private Municipality municipality;
+    
+    @OneToMany(mappedBy = "school", fetch=FetchType.LAZY)
+    private List<Expedient> expedients;
 
-    public Integer getId() {
+    public List<Expedient> getExpedients() {
+		return expedients;
+	}
+
+	public void setExpedients(List<Expedient> expedients) {
+		this.expedients = expedients;
+	}
+
+	public Integer getId() {
         return id;
     }
 

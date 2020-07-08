@@ -59,12 +59,6 @@ public class MainController {
         return mav;
     }
 	
-	@RequestMapping("/procesos")
-    public ModelAndView pruebau() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("user/procesos");
-        return mav;
-    }
 	
 	@RequestMapping("/user")
 	public ModelAndView us()
