@@ -18,6 +18,13 @@
         <h1>
             Escuelas
         </h1>
+        <button
+            class="btn btn-primary my-4"
+            onclick="addSchool()"
+        >
+            <i class="fas fa-plus"></i>
+            Agregar Materia
+        </button>
         <table class="table">
             <thead>
             <tr>
@@ -62,6 +69,9 @@
         function showItem(item) {
             console.log(item)
             window.location = `escuelas/${item}`
+        }
+        function addSchool() {
+            window.location = `escuelas/add`
         }
     </script>
 </body>
