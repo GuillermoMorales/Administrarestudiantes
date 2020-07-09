@@ -61,6 +61,25 @@ public class AdminController {
         return "admin/schools/detail";
     }
 
+    @GetMapping("escuelas/add")
+    public String addSchoolView(Model model) {
+        model.addAttribute("school", new School());
+        model.addAttribute("municipalities", municipalityService.showAll());
+        return "admin/schools/create";
+    }
+
+    @PostMapping("escuelas/add")
+    public String addSchool(Model model, @Valid @ModelAttribute School school, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/schools/create";
+        }
+
+        schoolService.save(school);
+
+        model.addAttribute("schoolList", schoolService.showAll());
+        return "redirect:/escuelas";
+    }
+
     @GetMapping("materias")
     public String showSubjects(Model model) {
         model.addAttribute("subjectsList", subjectService.showAll());
@@ -79,7 +98,7 @@ public class AdminController {
     }
 
     @GetMapping("materias/add")
-    public String addSubject(Model model) {
+    public String addSubjectView(Model model) {
         model.addAttribute("subject", new Subject());
         return "admin/subjects/create";
     }
@@ -91,7 +110,7 @@ public class AdminController {
         }
 
         subjectService.save(subject);
-        
+
         model.addAttribute("subjectsList", subjectService.showAll());
         return "redirect:/materias";
     }
