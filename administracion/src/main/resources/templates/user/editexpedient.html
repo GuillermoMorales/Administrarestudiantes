@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <!-- Los iconos tipo Solid de Fontawesome-->
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
     <!-- Bootstrap core JavaScript-->
@@ -17,74 +16,94 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
 
-
-    <link href="css/sb-admin.css" rel="stylesheet">
-    <link href="css/sb-admin.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <title>Agregar expediente</title>
+    <link href="/css/sb-admin.css" rel="stylesheet">
+    <link href="/css/sb-admin.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <title>Expediente</title>
 </head>
 <body id="page-top" class="back">
+    <!--/*@thymesVar id="subject" type="com.uca.capas.administracion.domain.Subject"*/-->
+    <div class="container">
+       <form method="post" th:action="@{/updateExpedient}" th:object="${expedient}" >
+                     
+                <h1>Editar expediente</h1>
 
-    <div class="container-fluid">
-
-
-        <div class="card mb-4">
-            <div class="card-body">
-                <div class="col-12 user-img text-center form-group">
-                    <img src="img/user2.png"/>
-                    <h3>Agregar expediente</h3>
-                </div>
-
-
-                <form method="post" th:action="@{/registerExpedient}" th:object="${expedient}">
+            <div
+                th:if="${success}"
+                class="alert alert-success"
+                role="alert"
+            >
+                Actualizado correctamente.
+            </div>
+            <div
+                th:if="${error}"
+                th:text="${error}"
+                class="alert alert-danger"
+                role="alert"
+            >
+            </div>
                     <table cellpadding="10">
+                    	<tr><td><input type="hidden" id="name" class="form-control" 
+                                       th:field="*{id}"
+                                       th:value="${expedient.getId()}"
+                                       ></td></tr>
                         <tr>
                             <td><label>Nombre: </label></td>
-                            <td><input type="text" id="name" class="form-control" onfocus="this.value=''"
-                                       th:field="*{name}">
+                            <td><input type="text" id="name" class="form-control" 
+                                       th:field="*{name}"
+                                       th:value="${expedient.getName()}"
+                                       >
                                 <span th:errors="*{name}" style="color:#DE0000"></span></td>
                         </tr>
                         <tr>
                             <td><label>Apellido: </label></td>
-                            <td><input type="text" id="surname" class="form-control" onfocus="this.value=''"
-                                       th:field="*{surname}">
-                                <span th:errors="*{name}" style="color:#DE0000"></span></td>
+                            <td><input type="text" id="surname" class="form-control" 
+                                       th:field="*{surname}"
+                                       th:value="${expedient.getSurname()}"
+                                       >
+                                <span th:errors="*{surname}" style="color:#DE0000"></span></td>
                         </tr>
                         <tr>
                             <td><label>Carnet: </label></td>
-                            <td><input type="number" id="carnet" class="form-control" onfocus="this.value=''"
-                                       th:field="*{carnet}">
+                            <td><input type="number" id="carnet" class="form-control" 
+                                       th:field="*{carnet}"
+                                       th:value="${expedient.getCarnet()}">
                                 <span th:errors="*{carnet}" style="color:#DE0000"></span></td>
                         </tr>
                         <tr>
                             <td><label>Direccion: </label></td>
-                            <td><input type="text" id="address" class="form-control" onfocus="this.value=''"
-                                       th:field="*{address}">
+                            <td><input type="text" id="address" class="form-control" 
+                                       th:field="*{address}"
+                                       th:value="${expedient.getAddress()}">
                                 <span th:errors="*{address}" style="color:#DE0000"></span></td>
                         </tr>
 
                         <tr>
                             <td><label>Telefono de casa: </label></td>
-                            <td><input type="number" id="home_phone" class="form-control" onfocus="this.value=''"
-                                       th:field="*{home_phone}">
+                            <td><input type="number" id="home_phone" class="form-control" 
+                                       th:field="*{home_phone}"
+                                       th:value="${expedient.getHome_phone()}"
+                                       >
                                 <span th:errors="*{home_phone}" style="color:#DE0000"></span></td>
                         </tr>
                         <tr>
                             <td><label>Telefono movil: </label></td>
-                            <td><input type="number" id="mobile_phone" class="form-control" onfocus="this.value=''"
-                                       th:field="*{mobile_phone}">
+                            <td><input type="number" id="mobile_phone" class="form-control" 
+                                       th:field="*{mobile_phone}"
+                                       th:value="${expedient.getMobile_phone()}">
                                 <span th:errors="*{mobile_phone}" style="color:#DE0000"></span></td>
                         </tr>
                         <tr>
                             <td><label>Nombre de mama: </label></td>
-                            <td><input type="text" id="mothers_name" class="form-control" onfocus="this.value=''"
+                            <td><input type="text" id="mothers_name" class="form-control" 
                                        th:field="*{mothers_name}">
                                 <span th:errors="*{mothers_name}" style="color:#DE0000"></span></td>
                         </tr>
                         <tr>
                             <td><label>Nombre de papa: </label></td>
-                            <td><input type="text" id="fathers_name" class="form-control" onfocus="this.value=''"
-                                       th:field="*{fathers_name}">
+                            <td><input type="text" id="fathers_name" class="form-control" 
+                                       th:field="*{fathers_name}"
+                                       th:value="${expedient.getFathers_name()}">
                                 <span th:errors="*{fathers_name}" style="color:#DE0000"></span></td>
                         </tr>
                         <tr>
@@ -97,7 +116,8 @@
                             >
                                 <option th:each="municipality : ${municipalities}"
                                         th:value=${municipality.municipality_id}
-                                        th:text="${municipality.name}">
+                                        th:text="${municipality.name}"
+                                        >
                                 </option>
                             </select></td>
                         </tr>
@@ -115,6 +135,7 @@
                                     th:value=${school.id}
                                     th:text="${school.name}"
                                     th:data-municipality-id="${school.getMunicipality_fk()}"
+                                	th:selected="${expedient.getSchool_fk()}"
                                 >
                                 </option>
                                 <!-- th:if="${school.municipality_fk} == 3-->
@@ -123,7 +144,7 @@
                         </tr>
                         <tr>
                             <td><label>Fecha de Nacimiento:</label></td>
-                            <td><input type="text" id="birth_date" class="form-control" th:field="*{birth_date}">
+                            <td><input type="text" id="birth_date" class="form-control" th:field="*{birth_date}" th:value="${expedient.getBirth_date()}">
                                 <span th:errors="*{birth_date}" style="color:#DE0000"></span></td>
                            
                         
@@ -132,17 +153,35 @@
 
 
                         <tr>
-                            <td><input type="submit" class="btn btn-primary btn-block" value="Enviar"/></td>
-
+                            <td><input type="submit" class="btn btn-primary btn-block" value="Actualizar"/></td>
+							<td><button
+                type="button"
+                class="btn btn-secondary"
+                onclick="goBack()"
+            >
+                Regresar
+            </button></td>
                         </tr>
                     </table>
                 </form>
-                <a href="/userExpedient">Regresar</a>
-            </div>
-        </div>
     </div>
+ <script type="text/javascript">
+                                $(function () {
+                                    $('#birth_date').datepicker({
+                                        format: 'dd/mm/yyyy'
+                                    });
+                                    $(".selector").datepicker({
+                                        autoSize: true
+                                    });
 
-    <script defer>
+                                });
+                            </script>
+    <script lang="js" defer th:inline="javascript">
+        function goBack() {
+            window.location = '/userExpedient';
+        }
+    </script>
+     <script defer>
         function filterSchools() {
             console.log('called');
             const options = document.querySelectorAll('#school-options');
@@ -162,18 +201,12 @@
             })
         }
     </script>
-     <script type="text/javascript">
-                                $(function () {
-                                    $('#birth_date').datepicker({
-                                        format: 'dd/mm/yyyy'
-                                    });
-                                    $(".selector").datepicker({
-                                        autoSize: true
-                                    });
+    
+    <script lang="js" defer th:inline="javascript">
+        function goBack() {
+            window.location = '/userExpedient';
+        }
+    </script>
 
-                                });
-                            </script>
-                            
 </body>
-
 </html>

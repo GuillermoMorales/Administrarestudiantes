@@ -1,6 +1,7 @@
 package com.uca.capas.administracion.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
@@ -16,10 +17,13 @@ public interface ExpedientService {
     
     public List<Expedient> findBySurname(String surname);
     
-    public Expedient findById(Integer id);
+   
 
-
+    public Optional<Expedient> findById(Integer id) throws DataAccessException;
+    
     public List<Expedient> findByNameLike(String valor);
+    
+    public List<Expedient> findBySurnameLike(String valor);
 
 
     public List<Expedient> findAllExpedients();

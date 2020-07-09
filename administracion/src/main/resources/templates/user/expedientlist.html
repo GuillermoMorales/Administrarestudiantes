@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <link href="/css/sb-admin.css" rel="stylesheet">
+    <link href="/css/sb-admin.css" rel="stylesheet">
+    <link href="/css/sb-admin.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <title>Busqueda</title>
+</head>
+<body id="page-top" class="back">
+    <!--/*@thymesVar id="subjects" type="com.uca.capas.administracion.domain.Subject"*/-->
+    <div class="container">
+        <h1>
+            Expedientes
+        </h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    Accion
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellido
+                </th>
+                <th>
+                    Materias aprobadas
+                </th>
+                <th>Materias reprobadas</th>
+                
+                <th>Promedio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                th:each="expedient: ${expedients}"
+            >
+                <td
+                >
+                 <button
+                        class="btn btn-primary"
+                        title="Materias"
+                        th:onclick="editExpedient([[${expedient.getId()}]])"
+                        type="button"
+                    >
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button
+                        class="btn btn-primary"
+                        title="Editar"
+                        th:onclick="subject([[${expedient.getId()}]])"
+                        type="button"
+                    >
+                        <i class="fas fa-edit"></i>
+                    </button>
+                   
+                </td>
+                <td
+                    th:text="*{expedient.getName()}"
+                ></td>
+                <td
+                    th:text="*{expedient.getSurname()}"
+                ></td>
+                <td
+                   
+                ></td>
+                <td
+                   
+                ></td>
+                <td
+                   
+                ></td>
+                <td
+                   
+                ></td>
+            </tr>
+            </tbody>
+        </table>
+         <a href="/userExpedient">Regresar</a>
+    </div>
+
+    <script lang="js">
+        function subject(item) {
+            window.location = `expedientSubject/${item}`
+        }
+
+        function editExpedient(item) {
+        	window.location = `editExpedient/${item}`
+        }
+
+    </script>
+    
+    
+    
+     
+</body>
+</html>

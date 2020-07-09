@@ -2,6 +2,7 @@ package com.uca.capas.administracion.repositories;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.uca.capas.administracion.domain.Expedient;
+
 
 
 
@@ -26,12 +28,18 @@ public interface ExpedientRepository extends JpaRepository<Expedient, Integer> {
 
     //Devuelve una lista de Expedients cuyo nombre cumpla con el criterio dado (desde el controlador)
     public List<Expedient> findByNameLike(String valor);
+    
+  //Devuelve una lista de Expedients cuyo nombre cumpla con el criterio dado (desde el controlador)
+    public List<Expedient> findBySurnameLike(String valor);
+
 
     @Query(value = "SELECT * from public.expedient", nativeQuery = true)
     public List<Expedient> findAllExpedients();
 
     @Query(value = "SELECT * from public.expedient where id = :expedient", nativeQuery = true)
-    public Expedient findExpedientById(@Param("expedient") Integer expedient);
+    public  Expedient findExpedientById(@Param("expedient") Integer expedient);
+    
+    public Optional<Expedient> findById(Integer id);
 
     @Query(value = "SELECT * from public.expedient where name = ?1 or surname = ?2", nativeQuery = true)
     public List<Expedient> findExpedientsNombreApel(String name, String surname);

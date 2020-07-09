@@ -10,16 +10,38 @@
 <link href="css/sb-admin.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Agrega un expediente</title>
+<title>Expediente</title>
 </head>
 <body>
+<br><br>
+<form method="post"  th:action="@{/userSearch}">
+<table cellpadding="10">
+				
+				<tr>
+				<td><label>Buscar alumno por: </label></td>
+				<td>
+				<select  id="codigo"  style="width: 400px" name="soption" required >
+				<option value="" disabled selected>Seleccione criterios [nombre, apellido]</option>
+	           	<option value="1">Nombre</option>
+ 				<option value="2">Apellido</option>
+				</select>
+				</td>
+				</tr>
+				<tr>
+				<td><label>Valor de busqueda: </label></td>
+				<td><input type="text" id="buscar_id" class="form-control" name=cadena onfocus="this.value=''" required></td></tr>
+				<tr>
+                <td><input type="submit" class="btn btn-primary btn-block" value="Buscar"/></td></tr>
+</table>
+	                </form>
+
 <br><br><br><br>
-<a class="btn btn-primary" href="/userAddExpedient" role="button">Agregar Expediente </a><br><br>
-<br>
+<div style=" margin: 10px;"><a class="btn btn-primary" href="/userAddExpedient" role="button">Agregar Expediente </a><br><br>
+<br></div>
 <div th:if="${resultado==1}" class="alert alert-success"
 					role="alert">Expediente agregado con exito.</div>
 					<div th:if="${resultado==2}" class="alert alert-warning"
-					role="alert">Oooops tu registro no cumple los requisitos.</div>
+					role="alert">Oooops tu registro no cumple los requisitos. Ya existe alguien con ese carnet </div>
 					<div th:if="${resultado==2}" class="alert alert-warning"
 					role="alert" th:text="${error}"></div>
 

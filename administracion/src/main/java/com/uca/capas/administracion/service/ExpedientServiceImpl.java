@@ -1,6 +1,7 @@
 package com.uca.capas.administracion.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.uca.capas.administracion.dao.ExpedientDAO;
+
 import com.uca.capas.administracion.domain.Expedient;
 import com.uca.capas.administracion.repositories.ExpedientRepository;
 
@@ -39,9 +40,9 @@ public class ExpedientServiceImpl implements ExpedientService {
 	}
 
 	@Override
-	public Expedient findById(Integer id) {
+	public Optional<Expedient> findById(Integer id) {
 		// TODO Auto-generated method stub
-		return expedientRepository.getOne(id);
+		return expedientRepository.findById(id);
 	}
 
 	@Override
@@ -66,6 +67,12 @@ public class ExpedientServiceImpl implements ExpedientService {
 	public void save(Expedient expedient) throws DataAccessException {
 		// TODO Auto-generated method stub
 		expedientRepository.save(expedient);
+	}
+
+	@Override
+	public List<Expedient> findBySurnameLike(String valor) {
+		// TODO Auto-generated method stub
+		return expedientRepository.findBySurnameLike(valor);
 	}
 
 
