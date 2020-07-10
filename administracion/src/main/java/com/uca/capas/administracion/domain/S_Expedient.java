@@ -23,7 +23,7 @@ public class S_Expedient {
 	@Column(name = "id")
 	private Integer id;
 	
-	@NotEmpty(message = "El campo nombre no puede quedar vacio")
+	
 	@Column(name = "subject_id_fk")
 	private Integer subject_id_fk;
 	
@@ -32,25 +32,27 @@ public class S_Expedient {
     @JoinColumn(name = "subject_id_fk")
 	private String subject;*/
 	
-	@NotEmpty(message = "El campo nombre no puede quedar vacio")
+	
 	@Column(name = "expedient_id_fk")
 	private Integer expedient_id_fk;
 	
-	@NotEmpty(message = "El campo nombre no puede quedar vacio")
+	
 	@Column(name = "year")
 	private Integer year;
 	
-	@NotEmpty(message = "El campo nombre no puede quedar vacio")
+	
 	@Column(name = "semester")
 	private Integer semester;
 	
-	@NotEmpty(message = "El campo nombre no puede quedar vacio")
+	
 	@Column(name = "score")
 	private Integer score;
 	
-	@NotEmpty(message = "El campo nombre no puede quedar vacio")
+	
 	@Column(name = "result")
 	private String result;
+	
+	
 
 	public Integer getId() {
 		return id;

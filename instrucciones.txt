@@ -1,0 +1,13 @@
+Puerto postgres
+ataSource.setUrl("jdbc:postgresql://localhost:5432/administracionbd");
+		dataSource.setUsername("postgres");
+		dataSource.setPassword("root");
+
+
+USUARIO ADMIN
+user:admin
+pass:123
+
+USUARIO COORDINADOR
+user:carlos
+password:12121212

@@ -1,5 +1,6 @@
 package com.uca.capas.administracion.service;
 
+
 import com.uca.capas.administracion.domain.S_Expedient;
 import org.springframework.dao.DataAccessException;
 
@@ -15,6 +16,8 @@ public interface S_ExpedientService {
     public double getAvg(Integer id) throws DataAccessException;
 
     public List<S_Expedient> findSubExpedientsById(Integer expedient_id_fk) throws DataAccessException;
+    
+    public void save(S_Expedient s_expedient) throws DataAccessException;
 
 
 }

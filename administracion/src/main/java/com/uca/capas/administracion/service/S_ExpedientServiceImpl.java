@@ -38,6 +38,12 @@ public class S_ExpedientServiceImpl implements S_ExpedientService {
         return repo.getAverage(id);
     }
 
+	@Override
+	public void save(S_Expedient s_expedient) throws DataAccessException {
+		
+		repo.save(s_expedient);
+	}
+
     /*
     @Override
     public List<S_Expedient> findAllByExpedient_id_fkAndResult(Integer id, String result) {

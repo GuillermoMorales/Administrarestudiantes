@@ -24,7 +24,7 @@
         </h1>
         <button
             class="btn btn-primary my-4"
-            onclick="addSubject()"
+            th:onclick="addSubject([[${expedient.get().getId()}]])"
         >
          <i class="fas fa-plus"></i>
             Agregar Materia

@@ -118,9 +118,7 @@ public class UserController {
         ModelAndView mav = new ModelAndView();
         List<Expedient> expedients = null;
 
-        List<S_Expedient> approved = subjectExpedientService.getByResult(3, "aprobada");
-        List<S_Expedient> reproved = subjectExpedientService.getByResult(3, "reprobada");
-        double average = subjectExpedientService.getAvg(3);
+       
 
         if (soption == 1) {
             expedients = expedientService.findByNameLike(cadena);
@@ -130,10 +128,41 @@ public class UserController {
         } else {
             System.out.println("error en el seleccionable");
         }
+        System.out.println("Antes del for");
+        for(int i=0;i<expedients.size();i++) {
+
+        	System.out.println("el id es "+ expedients.get(i).getId());
+        	List<S_Expedient> approved = subjectExpedientService.getByResult(expedients.get(i).getId(), "aprobada");
+            List<S_Expedient> reproved = subjectExpedientService.getByResult(expedients.get(i).getId(), "reprobada");
+            
+            double average = subjectExpedientService.getAvg(expedients.get(i).getId());
+            if(approved!=null) {
+
+                expedients.get(i).setApro(approved.size());	
+            	
+            }else {
+            	 expedients.get(i).setApro(0);	
+            }
+            
+            if(reproved!=null) {
+
+            	expedients.get(i).setRepro(reproved.size());
+                	
+            }else {
+            	expedients.get(i).setRepro(0);
+            }
+            
+          
+
+                expedients.get(i).setAvg(average);
+                
+           
+
+        	
+        }
+        
         mav.addObject("expedients", expedients);
-        mav.addObject("approved", approved);
-        mav.addObject("reproved", reproved);
-        mav.addObject("average", average);
+        
         mav.setViewName("user/expedientlist");
         mav.setViewName("user/expedientlist");
         return mav;
@@ -287,9 +316,10 @@ public class UserController {
         return "user/editsubjectexpedient";
     }
 
-    @RequestMapping("/expedientSubject/addNewSubject/{id}")
-    public ModelAndView addSubjectExpedient(@Valid @ModelAttribute Expedient expedient, BindingResult result) {
+    @RequestMapping("/addSubject")
+    public ModelAndView addSubjectExpedient(@Valid @ModelAttribute S_Expedient s_expedient, BindingResult result) {
         ModelAndView mav = new ModelAndView();
+       
         if (result.hasErrors()) {
             List<Subject> subjects = null;
 
@@ -303,7 +333,7 @@ public class UserController {
             mav.setViewName("user/subject");
         } else {
             try {
-                expedientService.save(expedient);
+            	subjectExpedientService.save(s_expedient);
                 mav.addObject("resultado", 1);
 
             } catch (Exception e) {
@@ -316,6 +346,35 @@ public class UserController {
             mav.setViewName("user/expedient");
         }
 
+        return mav;
+    }
+    
+    @RequestMapping("/expedientSubject/addNewSubject/{id}")
+    public ModelAndView addSubject(Model model, @PathVariable("id") Integer id) {
+        ModelAndView mav = new ModelAndView();
+        S_Expedient s_expedient = new S_Expedient();
+        s_expedient.setExpedient_id_fk(id);
+        
+        mav.addObject("s_expedient", s_expedient);
+        
+       
+
+        List<Subject> subjects = null;
+        
+        try {
+            subjects = subjectService.showAll();
+
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mav.addObject("subjects", subjects);
+        
+       mav.addObject("idexpedient",id);
+       
+
+        mav.setViewName("user/addsubject");
         return mav;
     }
 

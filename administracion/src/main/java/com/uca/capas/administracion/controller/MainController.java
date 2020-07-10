@@ -71,7 +71,7 @@ public class MainController {
 	public ModelAndView us()
 	{
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user/user");
+		mav.setViewName("user/procesos");
 		return mav;
 	}
 	

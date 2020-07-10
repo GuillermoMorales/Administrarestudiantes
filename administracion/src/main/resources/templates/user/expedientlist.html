@@ -72,21 +72,21 @@
                 <td
                 >
                     <span
-                        th:text="${approved.size()}"
+                        th:text="${expedient.getApro()}"
                     ></span>
                 </td>
                 <td
 
                 >
                     <span
-                        th:text="${reproved.size()}"
+                        th:text="${expedient.getRepro()}"
                     ></span>
                 </td>
                 <td
                    
                 >
                     <span
-                        th:text="${average}"
+                        th:text="${expedient.getAvg()}"
                     ></span>
                 </td>
             </tr>

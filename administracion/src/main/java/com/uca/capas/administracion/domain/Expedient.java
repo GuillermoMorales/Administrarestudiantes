@@ -2,6 +2,7 @@ package com.uca.capas.administracion.domain;
 
 
 
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ import javax.persistence.MapsId;
 
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -88,6 +90,39 @@ public class Expedient {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "birth_date")
     private Date birth_date;
+	
+	@Transient
+	private Integer apro = 0;
+	@Transient
+	private int repro = 0;
+	@Transient
+	private double avg = 0;
+
+	
+
+	public int getApro() {
+		return apro;
+	}
+
+	public void setApro(int apro) {
+		this.apro = apro;
+	}
+
+	public int getRepro() {
+		return repro;
+	}
+
+	public void setRepro(int repro) {
+		this.repro = repro;
+	}
+
+	public Double getAvg() {
+		return avg;
+	}
+
+	public void setAvg(Double avg) {
+		this.avg = avg;
+	}
 
 	public Integer getId() {
 		return id;

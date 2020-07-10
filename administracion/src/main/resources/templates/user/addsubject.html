@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <!-- Los iconos tipo Solid de Fontawesome-->
+       <!-- Los iconos tipo Solid de Fontawesome-->
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
@@ -32,15 +32,14 @@
             <div class="card-body">
                 <div class="col-12 user-img text-center form-group">
                     <img src="img/user2.png"/>
-                     <h1 th:text=" *{expedient.get().getName()}">
-                
-            
-        </h1> <h1 th:text=" *{expedient.get().getSurname()}"></h1>
-                </div>
+                    <div th:text="*{s_expedient.expedient_id_fk}"></div>
+                    
 
 
                 <form method="post" th:action="@{/addSubject}" th:object="${s_expedient}">
                     <table cellpadding="10">
+                     
+                 
                         <tr>
                             <td><label>Materia: </label></td>
                             <td><select
@@ -51,9 +50,9 @@
                                 <option
                                     id="subject-options"
                                     th:each="subject : ${subjects}"
-                                    th:value=${subejct.id}
-                                    th:text="${subject.name}"
-                                    th:data-municipality-id="${school.getSubject_id_fk()}"
+                                    th:value=${subject.id}
+                                    th:text="${subject.description}"
+                                    
                                 >
                                 </option>
                                 <!-- th:if="${school.municipality_fk} == 3-->
@@ -63,14 +62,33 @@
                         
                          <tr>
                             <td><label>Año:</label></td>
-                            <td><input type="text" id="year" class="form-control" th:field="*{year}">
+                            <td><input type="number" id="year" class="form-control" th:field="*{year}"
+                            >
                                 <span th:errors="*{year}" style="color:#DE0000"></span></td>
                            
                         <tr>
-                            <td><label>Ciclo: </label></td>
+                    <tr>
+                            
+                            <td><input type="number" id="expedient_id_fk" class="form-control"  th:field="*{expedient_id_fk}" hidden>
+                                <span th:errors="*{expedient_id_fk}" style="color:#DE0000" ></span></td>
+                           
+                        <tr>
+                            <td><label>Semestre: </label></td>
                             <td><input type="number" id="ciclo" class="form-control" onfocus="this.value=''"
-                                       th:field="*{ciclo}">
-                                <span th:errors="*{ciclo}" style="color:#DE0000"></span></td>
+                                       th:field="*{semester}">
+                                <span th:errors="*{semester}" style="color:#DE0000"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label>Score: </label></td>
+                            <td><input type="number" id="ciclo" class="form-control" onfocus="this.value=''"
+                                       th:field="*{score}">
+                                <span th:errors="*{score}" style="color:#DE0000"></span></td>
+                        </tr>
+                        <tr>
+                            <td><label>Result: </label></td>
+                            <td><input type="text" id="ciclo" class="form-control" onfocus="this.value=''"
+                                       th:field="*{result}">
+                                <span th:errors="*{result}" style="color:#DE0000"></span></td>
                         </tr>
 
                         <tr>
@@ -83,39 +101,8 @@
             </div>
         </div>
     </div>
-
-    <script defer>
-        function filterSchools() {
-            console.log('called');
-            const options = document.querySelectorAll('#school-options');
-            const municipalitySelect = document.querySelector('#municipality');
-            const school = document.querySelector('#school');
-            const selectedMunicipality = municipalitySelect.selectedOptions[0].value;
-
-            school.value = null;
-
-            options.forEach(el => {
-                console.log(typeof el.dataset.municipalityId, typeof selectedMunicipality);
-                if (el.dataset.municipalityId !== selectedMunicipality) {
-                    el.style.display = 'none';
-                } else {
-                    el.style.display = '';
-                }
-            })
-        }
-    </script>
-     <script type="text/javascript">
-                                $(function () {
-                                    $('#birth_date').datepicker({
-                                        format: 'dd/mm/yyyy'
-                                    });
-                                    $(".selector").datepicker({
-                                        autoSize: true
-                                    });
-
-                                });
-                            </script>
-                            
+</div>
+   
 </body>
 
 </html>
