@@ -28,7 +28,7 @@ public class User {
     @Pattern(regexp = "^\\S.*$", message = "Contraseña no tener solo espacio")
     @Size(message = "El campo no debe de tener menos de 8 caracteres", min = 8)
     @NotEmpty(message = "El Contraseña no debe estar vacío")
-    @Column(name = "")
+    @Column(name = "pass")
     private String pass;
 
     @Column(name = "enabled")
