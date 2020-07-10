@@ -26,9 +26,46 @@
 
 				
 			<form method="post" th:action="@{/registrarusuario}" th:object="${user}">
-          		<table cellpadding="10">          	          			
+          		<table cellpadding="10">
           			<tr>
           				<td><label>Nombre: </label></td>
+          				<td><input type="text" id="name" class="form-control" onfocus="this.value=''" th:field="*{name}" >
+          				<span th:errors="*{name}" style="color:#DE0000" ></span></td>          			
+          			</tr>
+          			<tr>
+          				<td><label>Apellido: </label></td>
+          				<td><input type="text" id="userlastname" class="form-control" onfocus="this.value=''" th:field="*{userlastname}" >
+          				<span th:errors="*{userlastname}" style="color:#DE0000" ></span></td>          			
+          			</tr>
+          			<tr>
+          				<td><label>Fecha de nacimiento: </label></td>
+          				<td><input type="text" id="fecha" class="form-control" onfocus="this.value=''" th:field="*{fecha}" >
+          				<span th:errors="*{fecha}" style="color:#DE0000" ></span></td>          			
+          			</tr>
+          			<tr>
+          				<td><label>Direccion: </label></td>
+          				<td><input type="text" id="adress" class="form-control" onfocus="this.value=''" th:field="*{adress}" >
+          				<span th:errors="*{adress}" style="color:#DE0000" ></span></td>          			
+          			</tr>
+          			<tr>
+          			
+    					<td><label>Municipio de residencia: </label></td>
+    					<td><select class="form-control"  th:field="*{municipality.municipality_id}">        				
+        					<option th:each="cat : ${municipalities}"
+                			th:value="${cat.municipality_id}"
+                			th:text="${cat.name}" ></option>
+    					</select></td>
+					
+          		</tr>     
+          		<tr> 	
+          		<td><label>Rol de usuario:</label></td>
+          		<td><select class="form-control" th:field="*{role}">
+   					<option value="Administrador">Administrador</option>
+   					<option value="Coordinador">Coordinador</option>   					
+				</select></td>
+				</tr>          			
+          			<tr>
+          				<td><label>Nombre de Usuario: </label></td>
           				<td><input type="text" id="username" class="form-control" onfocus="this.value=''" th:field="*{username}" >
           				<span th:errors="*{username}" style="color:#DE0000" ></span></td>          			
           			</tr>
