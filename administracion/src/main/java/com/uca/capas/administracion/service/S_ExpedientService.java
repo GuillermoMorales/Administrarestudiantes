@@ -12,6 +12,9 @@ public interface S_ExpedientService {
 
     public List<S_Expedient> getByResult(Integer id, String result) throws DataAccessException;
 
+    public double getAvg(Integer id) throws DataAccessException;
+
     public List<S_Expedient> findSubExpedientsById(Integer expedient_id_fk) throws DataAccessException;
+
 
 }

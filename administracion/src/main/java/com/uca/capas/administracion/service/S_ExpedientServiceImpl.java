@@ -2,6 +2,7 @@ package com.uca.capas.administracion.service;
 
 import com.uca.capas.administracion.domain.S_Expedient;
 import com.uca.capas.administracion.repositories.S_ExpedientRepository;
+import org.hibernate.mapping.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,11 @@ public class S_ExpedientServiceImpl implements S_ExpedientService {
     @Override
     public List<S_Expedient> getByResult(Integer id, String result) throws DataAccessException {
         return repo.getByResult(id, result);
+    }
+
+    @Override
+    public double getAvg(Integer id) throws DataAccessException {
+        return repo.getAverage(id);
     }
 
     /*

@@ -16,7 +16,7 @@ public interface S_ExpedientRepository extends JpaRepository<S_Expedient, Intege
     public List<S_Expedient> getByResult(@Param("id") Integer id, @Param("result") String result);
 
     @Query(value = "SELECT AVG(score) FROM subject_expedient WHERE expedient_id_fk = :id", nativeQuery = true)
-    public List<S_Expedient> getAverage(@Param("id") Integer id);
+    public double getAverage(@Param("id") Integer id);
 
     @Query(value = "SELECT * from public.subject_expedient where expedient_id_fk = :expedient_id_fk", nativeQuery = true)
     public List<S_Expedient> findSubExpedientsById(@Param("expedient_id_fk") Integer expedient_id_fk);

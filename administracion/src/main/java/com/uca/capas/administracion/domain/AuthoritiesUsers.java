@@ -15,13 +15,13 @@ public class AuthoritiesUsers {
 	@Id
 	@GeneratedValue(generator="authorities_users_id_authorities_users_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "authorities_users_id_authorities_users_seq", sequenceName = "public.authorities_users_id_authorities_users_seq", allocationSize = 1)
-	@Column(name="id_authorities_users")
+	@Column(name="id_authority")
 	private Integer ids;
 
 	@Column(name="id_user")
 	private Integer id_user;
 	
-	@Column(name="id_authority")
+	@Column(name="id_authorities_user")
 	private Integer id_authority;
 
 	public Integer getIds() {

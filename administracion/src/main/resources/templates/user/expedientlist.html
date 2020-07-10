@@ -70,17 +70,25 @@
                     th:text="*{expedient.getSurname()}"
                 ></td>
                 <td
-                   
-                ></td>
+                >
+                    <span
+                        th:text="${approved.size()}"
+                    ></span>
+                </td>
+                <td
+
+                >
+                    <span
+                        th:text="${reproved.size()}"
+                    ></span>
+                </td>
                 <td
                    
-                ></td>
-                <td
-                   
-                ></td>
-                <td
-                   
-                ></td>
+                >
+                    <span
+                        th:text="${average}"
+                    ></span>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -97,9 +105,5 @@
         }
 
     </script>
-    
-    
-    
-     
 </body>
 </html>
