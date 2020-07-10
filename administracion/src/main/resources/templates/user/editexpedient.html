@@ -117,6 +117,7 @@
                                 <option th:each="municipality : ${municipalities}"
                                         th:value=${municipality.municipality_id}
                                         th:text="${municipality.name}"
+                                        th:selected="${expedient.getSchool().getMunicipality_fk() == municipality.getMunicipality_id()}"
                                         >
                                 </option>
                             </select></td>
