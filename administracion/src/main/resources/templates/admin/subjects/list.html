@@ -65,7 +65,7 @@
                     th:text="*{subject.getDescription()}"
                 ></td>
                 <td
-                    th:text="*{subject.getStatus()}"
+                    th:text="*{subject.getStatus() ? 'Activa' : 'Inactiva'}"
                 ></td>
             </tr>
             </tbody>

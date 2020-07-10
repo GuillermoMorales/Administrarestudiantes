@@ -28,8 +28,7 @@ public class Subject {
     private String description;
 
     @Column(name = "status")
-    @NotEmpty(message = "El estado no debe estar vacío")
-    private String status;
+    private Boolean status;
 
     public Integer getId() {
         return id;
@@ -55,11 +54,11 @@ public class Subject {
         this.description = description;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 }

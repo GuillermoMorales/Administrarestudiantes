@@ -68,6 +68,21 @@
                 </select>
             </label>
             <br>
+            <label
+                for="status"
+                class="form-check-label"
+            >
+                Estado
+                <br>
+                <input
+                    type="checkbox"
+                    class=""
+                    th:value="${school.get().getStatus()}"
+                    th:field="*{status}"
+                    id="status"
+                />
+                <span th:errors="*{status}" style="color:#DE0000"></span>
+            </label>
             <hr>
             <button
                 type="button"

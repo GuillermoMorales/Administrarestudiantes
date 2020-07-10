@@ -2,12 +2,9 @@ package com.uca.capas.administracion.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -28,23 +25,26 @@ public class School {
     @Column(name = "municipality_fk")
     private Integer municipality_fk;
 
+    @Column(name = "status")
+    private Boolean status;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("id")
     @JoinColumn(name = "municipality_fk")
     private Municipality municipality;
-    
-    @OneToMany(mappedBy = "school", fetch=FetchType.LAZY)
+
+    @OneToMany(mappedBy = "school", fetch = FetchType.LAZY)
     private List<Expedient> expedients;
 
     public List<Expedient> getExpedients() {
-		return expedients;
-	}
+        return expedients;
+    }
 
-	public void setExpedients(List<Expedient> expedients) {
-		this.expedients = expedients;
-	}
+    public void setExpedients(List<Expedient> expedients) {
+        this.expedients = expedients;
+    }
 
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -76,12 +76,11 @@ public class School {
         this.municipality = municipality;
     }
 
-    public String toJSON() {
-        try {
-            return new ObjectMapper().writeValueAsString(this);
-        } catch (Exception e) {
-            System.out.println(e);
-            return "{ \"error\" : \"Error occurred while parsing\"}";
-        }
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

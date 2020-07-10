@@ -52,6 +52,7 @@ public class AdminController {
             if (sch.isPresent()) {
                 sch.get().setMunicipality_fk(school.getMunicipality_fk());
                 sch.get().setName(school.getName());
+                sch.get().setStatus(school.getStatus());
                 schoolService.save(sch.get());
             }
             model.addAttribute("success", true);
@@ -87,7 +88,7 @@ public class AdminController {
     }
 
     @GetMapping("materias/{id}")
-    public String showSubject(Model model, @PathVariable("id") Integer id) {
+   public String showSubject(Model model, @PathVariable("id") Integer id) {
         Optional<Subject> subject = subjectService.findById(id);
         if (subject.isPresent()) {
             model.addAttribute("subject", subject.get());

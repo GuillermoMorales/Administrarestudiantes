@@ -37,6 +37,9 @@
                 <th>
                     Municipio
                 </th>
+                <th>
+                    Estado
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -60,6 +63,9 @@
                 <td
                     th:text="*{school.getMunicipality().getName()}"
                 ></td>
+                <td
+                    th:text="*{school.getStatus() ? 'Activa' : 'Inactiva'}"
+                ></td>
             </tr>
             </tbody>
         </table>
@@ -70,6 +76,7 @@
             console.log(item)
             window.location = `escuelas/${item}`
         }
+
         function addSchool() {
             window.location = `escuelas/add`
         }

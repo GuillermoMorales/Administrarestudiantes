@@ -46,7 +46,7 @@
                     th:value="${subject.getCode()}"
                     th:field="*{code}"
                 />
-                <span th:errors="*{code}" style="color:#DE0000" ></span>
+                <span th:errors="*{code}" style="color:#DE0000"></span>
             </label>
             <br>
             <label>
@@ -56,17 +56,23 @@
                     th:value="${subject.getDescription()}"
                     th:field="*{description}"
                 />
-                <span th:errors="*{description}" style="color:#DE0000" ></span>
+                <span th:errors="*{description}" style="color:#DE0000"></span>
             </label>
             <br>
-            <label>
+            <label
+                for="status"
+                class="form-check-label"
+            >
                 Estado
+                <br>
                 <input
-                    class="form-control"
+                    type="checkbox"
+                    class=""
                     th:value="${subject.getStatus()}"
                     th:field="*{status}"
+                    id="status"
                 />
-                <span th:errors="*{status}" style="color:#DE0000" ></span>
+                <span th:errors="*{status}" style="color:#DE0000"></span>
             </label>
             <br>
             <hr>
