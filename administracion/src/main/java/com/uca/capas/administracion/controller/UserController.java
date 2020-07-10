@@ -24,11 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.administracion.domain.Expedient;
 import com.uca.capas.administracion.domain.Municipality;
+import com.uca.capas.administracion.domain.S_Expedient;
 import com.uca.capas.administracion.domain.School;
 import com.uca.capas.administracion.domain.Subject;
 import com.uca.capas.administracion.domain.User;
 import com.uca.capas.administracion.service.ExpedientService;
 import com.uca.capas.administracion.service.MunicipalityService;
+import com.uca.capas.administracion.service.S_ExpedientService;
 import com.uca.capas.administracion.service.SchoolService;
 import com.uca.capas.administracion.service.UserDetailServiceImpl;
 
@@ -49,6 +51,9 @@ public class UserController {
 	
 	@Autowired
 	ExpedientService expedientService;
+	
+	@Autowired
+	S_ExpedientService subjectExpedientService;
 	
 
 	@RequestMapping("/userProcess")
@@ -242,6 +247,22 @@ public class UserController {
 	        return "user/editexpedient";
 	    }
 
+	 @GetMapping("expedientSubject/{id}")
+	    public String expedientSubject(Model model, @PathVariable("id") Integer id) {
+	        
+		 Optional<S_Expedient> subjectExpedients = null;
+	          
+			try {
+				subjectExpedients = subjectExpedientService.findSubExpedientsById(id);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("subjectexpedients",subjectExpedients);
+	        
+	       
+	        return "user/subjectexpedientlist";
+	    }
 	
 
 }
