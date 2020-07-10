@@ -1,6 +1,9 @@
 package com.uca.capas.administracion.domain;
 
 import javax.persistence.*;
+
+
+import java.util.List;
 import java.util.Set;
 
 
@@ -25,8 +28,21 @@ public class Municipality {
     )
      */
     private Set<School> schools;
+    
+    @OneToMany(mappedBy="municipality",fetch=FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<User> user;
+    
+    
 
-    public Integer getMunicipality_id() {
+    public List<User> getUser() {
+		return user;
+	}
+
+	public void setUser(List<User> user) {
+		this.user = user;
+	}
+
+	public Integer getMunicipality_id() {
         return municipality_id;
     }
 
