@@ -2,9 +2,13 @@ package com.uca.capas.administracion.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -17,33 +21,36 @@ public class S_Expedient {
 	@GeneratedValue(generator="subject_expedient_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "subject_expedient_id_seq", sequenceName = "public.subject_expedient_id_seq", allocationSize = 1)
 	@Column(name = "id")
-	Integer id;
+	private Integer id;
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "subject_id_fk")
-	Integer subject_id_fk;
+	private Integer subject_id_fk;
 	
-	
+	/*@ManyToOne(fetch = FetchType.EAGER)
+    @MapsId("id")
+    @JoinColumn(name = "subject_id_fk")
+	private String subject;*/
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "expedient_id_fk")
-	Integer expedient_id_fk;
+	private Integer expedient_id_fk;
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "year")
-	Integer year;
+	private Integer year;
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "semester")
-	Integer semester;
+	private Integer semester;
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "score")
-	Integer score;
+	private Integer score;
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "result")
-	String result;
+	private String result;
 
 	public Integer getId() {
 		return id;
@@ -68,6 +75,15 @@ public class S_Expedient {
 	public void setExpedient_id_fk(Integer expedient_id_fk) {
 		this.expedient_id_fk = expedient_id_fk;
 	}
+	
+
+	/*public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}*/
 
 	public Integer getYear() {
 		return year;
