@@ -40,7 +40,7 @@ public class UserDetailServiceImpl implements UserDetailsService{
 		{
 			throw new UsernameNotFoundException("Inhabilitado");
 		}
-		if(us.isEnabled() == false)
+		if(us.getEnabled() == false)
 		{
 			throw new UsernameNotFoundException("Desactivado");
 		}

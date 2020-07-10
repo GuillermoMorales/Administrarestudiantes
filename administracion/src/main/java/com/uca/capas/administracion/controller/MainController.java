@@ -1,5 +1,7 @@
 package com.uca.capas.administracion.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uca.capas.administracion.domain.Municipality;
 import com.uca.capas.administracion.domain.User;
+import com.uca.capas.administracion.service.MunicipalityService;
 import com.uca.capas.administracion.service.UserDetailServiceImpl;
 import com.uca.capas.administracion.service.UserService;
 import com.uca.capas.administracion.service.UserServiceImpl;	
@@ -30,6 +34,9 @@ public class MainController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	MunicipalityService municipalityService;
 	
 	@RequestMapping("/login")
     public ModelAndView login () {
@@ -72,6 +79,14 @@ public class MainController {
 	public ModelAndView registro()
 	{
 		ModelAndView mav = new ModelAndView();
+		List<Municipality> municipalities= null;
+		try {
+			municipalities =  municipalityService.showAll();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		mav.addObject("municipalities",municipalities);
 		mav.addObject("user", new User());
 		mav.setViewName("registro");
 		return mav;
@@ -82,7 +97,15 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors())
 		{
+			List<Municipality> municipalities= null;
+			try {
+				municipalities =  municipalityService.showAll();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			mav.addObject("municipalities",municipalities);
 			mav.setViewName("registro");
+			
 		}
 		else
 		{	

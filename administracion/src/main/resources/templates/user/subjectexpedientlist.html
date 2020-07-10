@@ -15,7 +15,10 @@
 <body id="page-top" class="back">
     <!--/*@thymesVar id="subjects" type="com.uca.capas.administracion.domain.Subject"*/-->
     <div class="container">
-        <h1>
+        <h1 th:text=" *{expedient.get().getName()}">
+                
+            
+        </h1> <h1 th:text=" *{expedient.get().getSurname()}">
                 
             
         </h1>
@@ -37,7 +40,7 @@
                     Materia
                 </th>
                 <th>
-                    Anio
+                    Año
                 </th>
                 <th>
                     Ciclo
@@ -65,7 +68,7 @@
                    
                 </td>
                 <td
-                   th:text="*{subjectexpedient.getSemester()}"
+                   th:text="*{subjects.get(subjectexpedient.getSubject_id_fk()-1).getDescription()}"
                 ></td>
                 <td
                     th:text="*{subjectexpedient.getYear()}"
@@ -94,7 +97,7 @@
         function editSubject(item) {
         	window.location = `editSubject/${item}`
         }
-        function addSubject() {
+        function addSubject(item) {
             window.location = `addNewSubject/${item}`
         }
 

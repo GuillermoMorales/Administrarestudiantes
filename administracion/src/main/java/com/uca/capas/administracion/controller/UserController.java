@@ -32,6 +32,7 @@ import com.uca.capas.administracion.service.ExpedientService;
 import com.uca.capas.administracion.service.MunicipalityService;
 import com.uca.capas.administracion.service.S_ExpedientService;
 import com.uca.capas.administracion.service.SchoolService;
+import com.uca.capas.administracion.service.SubjectService;
 import com.uca.capas.administracion.service.UserDetailServiceImpl;
 
 
@@ -54,6 +55,9 @@ public class UserController {
 	
 	@Autowired
 	S_ExpedientService subjectExpedientService;
+	
+	@Autowired
+	SubjectService subjectService;
 	
 
 	@RequestMapping("/userProcess")
@@ -251,20 +255,98 @@ public class UserController {
 	    public String expedientSubject(Model model, @PathVariable("id") Integer id) {
 	        
 		 List<S_Expedient> subjectExpedients = null;
+		 Optional<Expedient> expedient = null;
+		List<Subject> subjects = null;
 		
 	          
 			try {
 				subjectExpedients = subjectExpedientService.findSubExpedientsById(id);
+				expedient = expedientService.findById(id);
+				subjects = subjectService.showAll();
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
 			
 			model.addAttribute("subjectexpedients",subjectExpedients);
+			//expedient.get().getName();
+			//expedient.get().getSurname();
+			model.addAttribute("expedient", expedient);
+			model.addAttribute("subjects", subjects);
+			
+			
+			
 			
 	        
 			 System.out.println(subjectExpedients.size());
 	        return "user/subjectexpedientlist";
 	    }
+	 
+	 @GetMapping("expedientSubject/editSubject/{id}")
+	    public String editSubject(Model model, @PathVariable("id") Integer id) {
+	        
+		 List<S_Expedient> subjectExpedients = null;
+		 Optional<Expedient> expedient = null;
+		List<Subject> subjects = null;
+		
+	          
+			try {
+				subjectExpedients = subjectExpedientService.findSubExpedientsById(id);
+				expedient = expedientService.findById(id);
+				subjects = subjectService.showAll();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("subjectexpedients",subjectExpedients);
+			//expedient.get().getName();
+			//expedient.get().getSurname();
+			model.addAttribute("expedient", expedient);
+			model.addAttribute("subjects", subjects);
+			
+			
+			
+			
+	        
+			 System.out.println(subjectExpedients.size());
+	        return "user/editsubjectexpedient";
+	    }
+	 
+	 @RequestMapping("/expedientSubject/addNewSubject/{id}")
+		public ModelAndView addSubjectExpedient(@Valid @ModelAttribute Expedient expedient, BindingResult result) {
+			ModelAndView mav = new ModelAndView();
+			if (result.hasErrors())
+			{
+				List<Subject> subjects= null;
+		        
+		    	try {
+					subjects =  subjectService.showAll();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+		    	mav.addObject("subjects", subjects);
+				
+				mav.setViewName("user/subject");
+			}
+			else
+			{	
+				try {
+				expedientService.save(expedient);
+				mav.addObject("resultado", 1);
+				
+				}
+				catch(Exception e){
+					e.printStackTrace();
+					mav.clear();
+					mav.addObject("resultado", 2);
+					
+					mav.addObject("error", e.toString());
+				}
+				mav.setViewName("user/expedient");
+			}
+			
+			return mav;
+		}
+	 
 	
 
 }
