@@ -1,5 +1,6 @@
 package com.uca.capas.administracion.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class S_ExpedientServiceImpl implements S_ExpedientService{
 	}
 
 	@Override
-	public Optional<S_Expedient> findSubExpedientsById(Integer id) throws DataAccessException {
+	public List<S_Expedient> findSubExpedientsById(Integer id) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return repo.findSubExpedientsById(id);
 	}

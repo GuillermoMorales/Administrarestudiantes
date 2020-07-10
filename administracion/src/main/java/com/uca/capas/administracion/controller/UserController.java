@@ -250,7 +250,8 @@ public class UserController {
 	 @GetMapping("expedientSubject/{id}")
 	    public String expedientSubject(Model model, @PathVariable("id") Integer id) {
 	        
-		 Optional<S_Expedient> subjectExpedients = null;
+		 List<S_Expedient> subjectExpedients = null;
+		
 	          
 			try {
 				subjectExpedients = subjectExpedientService.findSubExpedientsById(id);
@@ -259,8 +260,9 @@ public class UserController {
 			}
 			
 			model.addAttribute("subjectexpedients",subjectExpedients);
+			
 	        
-	       
+			 System.out.println(subjectExpedients.size());
 	        return "user/subjectexpedientlist";
 	    }
 	

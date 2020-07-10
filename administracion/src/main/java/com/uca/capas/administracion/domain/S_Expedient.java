@@ -17,17 +17,17 @@ public class S_Expedient {
 	@GeneratedValue(generator="subject_expedient_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "subject_expedient_id_seq", sequenceName = "public.subject_expedient_id_seq", allocationSize = 1)
 	@Column(name = "id")
-	Integer seId;
+	Integer id;
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "subject_id_fk")
-	Integer sId;
+	Integer subject_id_fk;
 	
 	
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "expedient_id_fk")
-	Integer eId;
+	Integer expedient_id_fk;
 	
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "year")
@@ -44,50 +44,65 @@ public class S_Expedient {
 	@NotEmpty(message = "El campo nombre no puede quedar vacio")
 	@Column(name = "result")
 	String result;
-	
-	
-	public Integer getSeId() {
-		return seId;
+
+	public Integer getId() {
+		return id;
 	}
-	public void setSeId(Integer seId) {
-		this.seId = seId;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	public Integer getsId() {
-		return sId;
+
+	public Integer getSubject_id_fk() {
+		return subject_id_fk;
 	}
-	public void setsId(Integer sId) {
-		this.sId = sId;
+
+	public void setSubject_id_fk(Integer subject_id_fk) {
+		this.subject_id_fk = subject_id_fk;
 	}
-	public Integer geteId() {
-		return eId;
+
+	public Integer getExpedient_id_fk() {
+		return expedient_id_fk;
 	}
-	public void seteId(Integer eId) {
-		this.eId = eId;
+
+	public void setExpedient_id_fk(Integer expedient_id_fk) {
+		this.expedient_id_fk = expedient_id_fk;
 	}
+
 	public Integer getYear() {
 		return year;
 	}
+
 	public void setYear(Integer year) {
 		this.year = year;
 	}
+
 	public Integer getSemester() {
 		return semester;
 	}
+
 	public void setSemester(Integer semester) {
 		this.semester = semester;
 	}
+
 	public Integer getScore() {
 		return score;
 	}
+
 	public void setScore(Integer score) {
 		this.score = score;
 	}
+
 	public String getResult() {
 		return result;
 	}
+
 	public void setResult(String result) {
 		this.result = result;
 	}
+	
+	
+
 	
 
 }

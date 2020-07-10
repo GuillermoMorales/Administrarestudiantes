@@ -1,5 +1,6 @@
 package com.uca.capas.administracion.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +15,7 @@ public interface S_ExpedientRepository extends JpaRepository<S_Expedient, Intege
 	Optional<S_Expedient> findById(Integer id);
 	
 	@Query(value = "SELECT * from public.subject_expedient where expedient_id_fk = :expedient_id_fk", nativeQuery = true)
-    public Optional<S_Expedient> findSubExpedientsById(@Param("expedient_id_fk") Integer expedient_id_fk);
+    public List<S_Expedient> findSubExpedientsById(@Param("expedient_id_fk") Integer expedient_id_fk);
 	
 	
 

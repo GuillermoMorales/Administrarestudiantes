@@ -15,10 +15,17 @@
 <body id="page-top" class="back">
     <!--/*@thymesVar id="subjects" type="com.uca.capas.administracion.domain.Subject"*/-->
     <div class="container">
-        <h1 th:text="*{expedient.getName()}">
+        <h1>
                 
             
         </h1>
+        <button
+            class="btn btn-primary my-4"
+            onclick="addSubject()"
+        >
+         <i class="fas fa-plus"></i>
+            Agregar Materia
+        </button>
 
         <table class="table">
             <thead>
@@ -42,14 +49,14 @@
             </thead>
             <tbody>
             <tr
-                th:each="subject_expedient: ${subject_expedients}"
+                th:each="subjectexpedient: ${subjectexpedients}"
             >
                 <td
                 >
                  <button
                         class="btn btn-primary"
                         title="Editar Materia"
-                        th:onclick="editSubject([[${s_expedient.getId()}]])"
+                        th:onclick="editSubject([[${subjectexpedient.getId()}]])"
                         type="button"
                     >
                         <i class="fas fa-edit"></i>
@@ -58,19 +65,19 @@
                    
                 </td>
                 <td
-                   th:text="*{s_expedient.getSemester()}"
+                   th:text="*{subjectexpedient.getSemester()}"
                 ></td>
                 <td
-                    th:text="*{s_expedient.getYear()}"
+                    th:text="*{subjectexpedient.getYear()}"
                 ></td>
                 <td
-                   th:text="*{s_expedient.getSemester()}"
+                   th:text="*{subjectexpedient.getSemester()}"
                 ></td>
                 <td
-                   th:text="*{s_expedient.getScore()}"
+                   th:text="*{subjectexpedient.getScore()}"
                 ></td>
                 <td
-                  th:text="*{s_expedient.getResult()}" 
+                  th:text="*{subjectexpedient.getResult()}" 
                 ></td>
                 <td
                    
@@ -82,12 +89,13 @@
     </div>
 
     <script lang="js">
-        function subject(item) {
-            window.location = `expedientSubject/${item}`
-        }
+      
 
         function editSubject(item) {
         	window.location = `editSubject/${item}`
+        }
+        function addSubject() {
+            window.location = `addNewSubject/${item}`
         }
 
     </script>
